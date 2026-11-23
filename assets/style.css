@@ -9,6 +9,7 @@ body{margin:0;font:15.5px/1.65 'Inter',-apple-system,Segoe UI,Roboto,sans-serif;
   background:linear-gradient(180deg,#0a0f0d 0%,#0a1310 100%)}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;
   background:repeating-linear-gradient(0deg,transparent 0 2px,#34d399 2px 3px)}
+a{color:var(--acc2)}a:visited{color:#f59e0b}a:hover{filter:brightness(1.2)}
 .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
 nav{position:sticky;top:0;z-index:50;background:rgba(10,15,13,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
 nav .wrap{display:flex;align-items:center;gap:6px;height:56px}
@@ -53,7 +54,7 @@ footer{margin-top:60px;border-top:1px solid var(--bd);padding:26px 0;color:var(-
 .toc a.on{color:var(--acc);border-left-color:var(--acc)}
 .toc a.l3{padding-left:24px;font-size:.8rem}
 article h2{border-bottom:1px solid var(--bd);padding-bottom:.3rem}
-article a{color:var(--acc)}
+article a{color:var(--acc2)}
 .copy{position:relative}
 .copy button{position:absolute;top:8px;right:8px;background:#122019;border:1px solid var(--bd);color:var(--mut);border-radius:6px;padding:3px 10px;font-size:.75rem;cursor:pointer}
 .copy button:hover{color:var(--fg)}
