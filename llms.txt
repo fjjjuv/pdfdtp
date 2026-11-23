@@ -1,0 +1,25 @@
+# PDFDTP — Document Transaction Protocol (PDF)
+
+> Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus journal entries for audit and undo.
+
+PDFDTP defines a request/response protocol for transactional document editing, designed for AI agents. Where current tooling answers "ok", a conforming engine answers with a certificate: machine-checkable proof of what the edit did — and the data to undo it. Transport-agnostic: MCP tools/call, stdio, HTTP, or in-process.
+
+Version 1.0 (Working Draft), Apache-2.0. Author: fjjjuv. Reference implementation: pdfbadger (https://github.com/fjjjuv/pdfbadger).
+
+## Documentation
+
+- [Overview](https://fjjjuv.github.io/pdfdtp/): what it is and why
+- [Specification](https://fjjjuv.github.io/pdfdtp/spec.html): full normative spec v1.0 (rendered)
+- [Specification source](https://github.com/fjjjuv/pdfdtp/blob/main/SPEC.md): raw markdown
+- [Examples](https://fjjjuv.github.io/pdfdtp/examples.html): worked example documents
+- [Full spec for LLMs](https://fjjjuv.github.io/pdfdtp/llms-full.txt): complete spec text
+
+## Related specifications
+
+- [PDFSP — PDF Scene Patch](https://github.com/fjjjuv/pdfsp): The op vocabulary carried in the ops field — PDFSP/1.0
+- [PDFAD — PDF Agent Descriptor](https://github.com/fjjjuv/pdfad): journal_head and capabilities reflect DTP state
+
+## Optional
+
+- [GitHub repository](https://github.com/fjjjuv/pdfdtp): source, issues, releases
+- [Release v1.0.0](https://github.com/fjjjuv/pdfdtp/releases/tag/v1.0.0)
