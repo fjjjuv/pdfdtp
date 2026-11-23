@@ -5,7 +5,7 @@ for AI agents.** Where current tooling answers "ok", a conforming engine
 answers with a **certificate**: machine-checkable proof of what the edit
 did — and the data to undo it.
 
-- **Spec:** [SPEC.md](SPEC.md) — version 1.0 (Working Draft)
+- **Spec:** [SPEC.md](SPEC.md) — version 1.0 (Stable)
 - **License:** [Apache-2.0](LICENSE) — implementations are free, including commercial
 - **Reference implementation:** [pdfbadger](https://github.com/fjjjuv/pdfbadger)
 - **Author:** [fjjjuv](https://github.com/fjjjuv)
