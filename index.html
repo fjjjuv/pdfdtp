@@ -6,6 +6,7 @@
 <meta name="keywords" content="PDF, transaction protocol, certificate, journal, audit, rollback, AI agents, MCP, specification, pdfdtp">
 <meta name="author" content="fjjjuv">
 <meta name="robots" content="index,follow,max-image-preview:large">
+
 <link rel="canonical" href="https://fjjjuv.github.io/pdfdtp/">
 <meta property="og:type" content="article"><meta property="og:title" content="Document Transaction Protocol (PDF) — PDFDTP specification">
 <meta property="og:description" content="Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus hash-chained journal entries for audit and undo."><meta property="og:url" content="https://fjjjuv.github.io/pdfdtp/">
@@ -44,6 +45,6 @@
 <section class="wrap"><h2>Why it exists</h2><p class="mut">PDFDTP defines a request/response protocol for transactional document editing, designed for AI agents. Where current tooling answers "ok", a conforming engine answers with a certificate: machine-checkable proof of what the edit did — and the data to undo it. Transport-agnostic: MCP tools/call, stdio, HTTP, or in-process.</p>
 <h2>Key properties</h2><div class="grid"><div class="card"><h3>contract</h3><p>The agent declares what may be touched before the edit: only_touch, max_mutations.</p></div><div class="card"><h3>certificate</h3><p>Proof that only authorized nodes changed — touched, untouched_changed, render_diff_zones.</p></div><div class="card"><h3>journal_entry</h3><p>Hash-chained provenance carrying inverse_ops — audit and rollback to any seq.</p></div><div class="card"><h3>strict mode</h3><p>Failed verification under strict: true rolls the document back — atomicity by default.</p></div><div class="card"><h3>Transport-agnostic</h3><p>Rides on MCP tools/call, stdio, HTTP or in-process calls.</p></div><div class="card"><h3>Shared vocabulary</h3><p>Same typed issues as PDFSP — one error model across the suite.</p></div></div></section>
 <section class="wrap"><h2>Related specifications</h2><div class="tblwrap"><table><tr><th>Spec</th><th>Full name</th><th>Relation</th></tr><tr><td><a href="https://github.com/fjjjuv/pdfsp">PDFSP</a></td><td>PDF Scene Patch</td><td class="mut">The op vocabulary carried in ops — PDFSP/1.0.</td></tr><tr><td><a href="https://github.com/fjjjuv/pdfad">PDFAD</a></td><td>PDF Agent Descriptor</td><td class="mut">journal_head and capabilities reflect DTP state.</td></tr></table></div>
-<div class="card" style="margin-top:20px"><h3>Reference implementation</h3><p><a href="https://github.com/fjjjuv/pdfbadger">pdfbadger</a> — PDF engine for AI agents implementing this spec. Three repos, one suite: patch it, transact it, describe it.</p></div></section>
+</section>
 <footer><div class="wrap">PDFDTP · Spec v1.0 · <a href="https://github.com/fjjjuv/pdfdtp/blob/main/LICENSE">Apache-2.0</a> · <a href="https://github.com/fjjjuv">fjjjuv</a> · site generated 2026-11-23</div></footer>
 <script src="assets/main.js"></script></body></html>
