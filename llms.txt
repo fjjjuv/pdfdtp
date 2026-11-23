@@ -1,6 +1,6 @@
 # PDFDTP — Document Transaction Protocol (PDF)
 
-> Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus journal entries for audit and undo.
+> Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus hash-chained journal entries for audit and undo.
 
 PDFDTP defines a request/response protocol for transactional document editing, designed for AI agents. Where current tooling answers "ok", a conforming engine answers with a certificate: machine-checkable proof of what the edit did — and the data to undo it. Transport-agnostic: MCP tools/call, stdio, HTTP, or in-process.
 
@@ -16,8 +16,8 @@ Version 1.0 (Working Draft), Apache-2.0. Author: fjjjuv. Reference implementatio
 
 ## Related specifications
 
-- [PDFSP — PDF Scene Patch](https://github.com/fjjjuv/pdfsp): The op vocabulary carried in the ops field — PDFSP/1.0
-- [PDFAD — PDF Agent Descriptor](https://github.com/fjjjuv/pdfad): journal_head and capabilities reflect DTP state
+- [PDFSP — PDF Scene Patch](https://github.com/fjjjuv/pdfsp): The op vocabulary carried in ops — PDFSP/1.0.
+- [PDFAD — PDF Agent Descriptor](https://github.com/fjjjuv/pdfad): journal_head and capabilities reflect DTP state.
 
 ## Optional
 

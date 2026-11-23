@@ -1,56 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Document Transaction Protocol (PDF) — PDFDTP Specification</title>
-<meta name="description" content="Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus journal entries for audit and undo.">
-<meta name="keywords" content="PDF, transaction protocol, certificate, journal, audit, rollback, AI agents, MCP, specification, pdfdtp, dtp">
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Document Transaction Protocol (PDF) — PDFDTP specification</title>
+<meta name="description" content="Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus hash-chained journal entries for audit and undo.">
+<meta name="keywords" content="PDF, transaction protocol, certificate, journal, audit, rollback, AI agents, MCP, specification, pdfdtp">
 <meta name="author" content="fjjjuv">
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://fjjjuv.github.io/pdfdtp/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Document Transaction Protocol (PDF) — PDFDTP Specification">
-<meta property="og:description" content="Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus journal entries for audit and undo.">
-<meta property="og:url" content="https://fjjjuv.github.io/pdfdtp/">
-<meta property="og:site_name" content="fjjjuv.github.io/pdfdtp">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Document Transaction Protocol (PDF) — PDFDTP Specification">
-<meta name="twitter:description" content="Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus journal entries for audit and undo.">
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"TechArticle","headline":"Document Transaction Protocol (PDF)","description":"Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus journal entries for audit and undo.","author":{"@type":"Person","name":"fjjjuv","url":"https://github.com/fjjjuv"},"license":"https://www.apache.org/licenses/LICENSE-2.0","codeRepository":"https://github.com/fjjjuv/pdfdtp","programmingLanguage":"JSON","version":"1.0","inLanguage":"en"}
-</script>
-<style>
-:root{--bg:#0d1117;--fg:#e6edf3;--mut:#8b949e;--acc:#58a6ff;--card:#161b22;--bd:#30363d}
-*{box-sizing:border-box}body{margin:0;font:16px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg)}
-.wrap{max-width:880px;margin:0 auto;padding:2rem 1.2rem}
-header.top{border-bottom:1px solid var(--bd);padding-bottom:1rem;margin-bottom:2rem}
-h1{font-size:2rem;margin:.2rem 0}h1 .v{color:var(--acc);font-size:1rem;vertical-align:middle}
-.tag{color:var(--mut);font-size:1.05rem}
-nav a{color:var(--acc);text-decoration:none;margin-right:1.2rem}nav a:hover{text-decoration:underline}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:1rem 1.2rem;margin:1rem 0}
-ul{padding-left:1.2rem}li{margin:.3rem 0}
-table{border-collapse:collapse;width:100%;margin:1rem 0}td,th{border:1px solid var(--bd);padding:.5rem .7rem;text-align:left;vertical-align:top}
-code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88em}
-code{background:#1f2630;padding:.1em .35em;border-radius:4px}
-pre{background:#0a0e14;border:1px solid var(--bd);border-radius:8px;padding:1rem;overflow:auto;line-height:1.45}
-pre code{background:none;padding:0}
-a{color:var(--acc)}.mut{color:var(--mut)}footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--bd);color:var(--mut);font-size:.85rem}
-.badge{display:inline-block;background:#1f6feb22;color:var(--acc);border:1px solid #1f6feb55;border-radius:999px;padding:.1rem .7rem;font-size:.8rem;margin-right:.4rem}
-h2{margin-top:2.2rem;border-bottom:1px solid var(--bd);padding-bottom:.3rem}
-</style>
-</head>
-<body><div class="wrap">
-<header class="top"><h1>PDFDTP <span class="v">v1.0</span></h1>
-<div class="tag">Document Transaction Protocol (PDF)</div>
-<p>PDFDTP defines a request/response protocol for transactional document editing, designed for AI agents. Where current tooling answers "ok", a conforming engine answers with a certificate: machine-checkable proof of what the edit did — and the data to undo it. Transport-agnostic: MCP tools/call, stdio, HTTP, or in-process.</p>
-<p><span class="badge">Working Draft</span><span class="badge">Apache-2.0</span><span class="badge">JSON</span></p>
-<nav><a href="index.html">Overview</a><a href="spec.html">Specification</a><a href="examples.html">Examples</a><a href="llms.txt">llms.txt</a><a href="https://github.com/fjjjuv/pdfdtp">GitHub</a></nav>
-</header>
-<h2>Key properties</h2>
-<ul><li>contract — the agent declares what may be touched before the edit</li><li>certificate — proof that only authorized nodes changed (touched, untouched_changed, render_diff_zones)</li><li>journal_entry — hash-chained provenance with inverse_ops for audit and rollback</li><li>strict mode — atomic rollback when verification fails</li><li>typed issues vocabulary shared with PDFSP</li></ul>
-<h2>Related specifications</h2>
-<table><tr><th>Spec</th><th>Full name</th><th>Relation</th></tr><tr><td><a href="https://github.com/fjjjuv/pdfsp">PDFSP</a></td><td class="mut">PDF Scene Patch</td><td>The op vocabulary carried in the ops field — PDFSP/1.0</td></tr><tr><td><a href="https://github.com/fjjjuv/pdfad">PDFAD</a></td><td class="mut">PDF Agent Descriptor</td><td>journal_head and capabilities reflect DTP state</td></tr></table>
-<div class="card"><strong>Reference implementation:</strong> <a href="https://github.com/fjjjuv/pdfbadger">pdfbadger</a> — PDF engine for AI agents implementing this spec.</div>
-<p>Full normative text: <a href="spec.html">specification</a> · runnable examples: <a href="examples.html">examples</a> · machine-readable index for LLMs: <a href="llms.txt">llms.txt</a></p>
-<footer>PDFDTP · Specification v1.0 (Working Draft) · <a href="https://github.com/fjjjuv/pdfdtp/blob/main/LICENSE">Apache-2.0</a> · by <a href="https://github.com/fjjjuv">fjjjuv</a></footer></div></body></html>
+<meta property="og:type" content="article"><meta property="og:title" content="Document Transaction Protocol (PDF) — PDFDTP specification">
+<meta property="og:description" content="Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus hash-chained journal entries for audit and undo."><meta property="og:url" content="https://fjjjuv.github.io/pdfdtp/">
+<meta name="twitter:card" content="summary"><meta name="twitter:title" content="Document Transaction Protocol (PDF) — PDFDTP specification">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Document Transaction Protocol (PDF)","description":"Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus hash-chained journal entries for audit and undo.","author":{"@type":"Person","name":"fjjjuv","url":"https://github.com/fjjjuv"},"license":"https://www.apache.org/licenses/LICENSE-2.0","codeRepository":"https://github.com/fjjjuv/pdfdtp","version":"1.0","inLanguage":"en"}</script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head><body>
+<nav><div class="wrap"><a class="brand" href="index.html"><b>pdfdtp/</b>PDFDTP</a><div class="spacer"></div><a class="link active" href="index.html">Overview</a><a class="link" href="spec.html">Specification</a><a class="link" href="examples.html">Examples</a><a class="link" href="playground.html">Playground</a><a class="link" href="llms.txt">llms.txt</a><a class="link" href="https://github.com/fjjjuv/pdfdtp">GitHub</a><button class="burger" aria-label="menu">≡</button></div></nav>
+<header class="hero"><div class="wrap">
+<div class="kicker" style="display:none"></div>
+<div class="badge">v1.0 · Working Draft · Apache-2.0</div>
+<h1>PDFDTP<br><span class="grad">Document Transaction Protocol (PDF)</span></h1>
+<p class="lede">Request/response protocol for transactional document editing — engines return certificates proving minimal mutation, plus hash-chained journal entries for audit and undo.</p>
+<div class="cta"><a class="btn pri" href="spec.html">Read the spec</a><a class="btn sec" href="playground.html">Try the Transaction Simulator</a><a class="btn sec" href="https://github.com/fjjjuv/pdfdtp">GitHub ↗</a></div>
+</div></header>
+<section class="wrap"><div class="term"><div class="bar"><span class="dot" style="background:#f87171"></span><span class="dot" style="background:#fbbf24"></span><span class="dot" style="background:#34d399"></span><span style="margin-left:8px">examples/request.json</span></div><pre><code>{
+  "dcp": "1.0",
+  "doc": "/abs/path/invoice.pdf",
+  "ops": [
+    {
+      "op": "replace_text",
+      "target": "text:'invoice #42'",
+      "text": "invoice #43"
+    }
+  ],
+  "contract": {
+    "only_touch": ["e12"],
+    "max_mutations": 1
+  },
+  "journal": true,
+  "strict": true
+}&nbsp;
+<span class='mut'>…</span></code></pre></div></section>
+<section class="wrap"><h2>Why it exists</h2><p class="mut">PDFDTP defines a request/response protocol for transactional document editing, designed for AI agents. Where current tooling answers "ok", a conforming engine answers with a certificate: machine-checkable proof of what the edit did — and the data to undo it. Transport-agnostic: MCP tools/call, stdio, HTTP, or in-process.</p>
+<h2>Key properties</h2><div class="grid"><div class="card"><h3>contract</h3><p>The agent declares what may be touched before the edit: only_touch, max_mutations.</p></div><div class="card"><h3>certificate</h3><p>Proof that only authorized nodes changed — touched, untouched_changed, render_diff_zones.</p></div><div class="card"><h3>journal_entry</h3><p>Hash-chained provenance carrying inverse_ops — audit and rollback to any seq.</p></div><div class="card"><h3>strict mode</h3><p>Failed verification under strict: true rolls the document back — atomicity by default.</p></div><div class="card"><h3>Transport-agnostic</h3><p>Rides on MCP tools/call, stdio, HTTP or in-process calls.</p></div><div class="card"><h3>Shared vocabulary</h3><p>Same typed issues as PDFSP — one error model across the suite.</p></div></div></section>
+<section class="wrap"><h2>Related specifications</h2><div class="tblwrap"><table><tr><th>Spec</th><th>Full name</th><th>Relation</th></tr><tr><td><a href="https://github.com/fjjjuv/pdfsp">PDFSP</a></td><td>PDF Scene Patch</td><td class="mut">The op vocabulary carried in ops — PDFSP/1.0.</td></tr><tr><td><a href="https://github.com/fjjjuv/pdfad">PDFAD</a></td><td>PDF Agent Descriptor</td><td class="mut">journal_head and capabilities reflect DTP state.</td></tr></table></div>
+<div class="card" style="margin-top:20px"><h3>Reference implementation</h3><p><a href="https://github.com/fjjjuv/pdfbadger">pdfbadger</a> — PDF engine for AI agents implementing this spec. Three repos, one suite: patch it, transact it, describe it.</p></div></section>
+<footer><div class="wrap">PDFDTP · Spec v1.0 (Working Draft) · <a href="https://github.com/fjjjuv/pdfdtp/blob/main/LICENSE">Apache-2.0</a> · <a href="https://github.com/fjjjuv">fjjjuv</a> · site generated 2026-11-23</div></footer>
+<script src="assets/main.js"></script></body></html>
