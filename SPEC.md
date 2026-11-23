@@ -15,8 +15,7 @@ a DTP engine answers with a **certificate**: machine-checkable proof of
 what the edit did — and the data to undo it.
 
 DTP is transport-agnostic: it can ride on MCP `tools/call`, stdio,
-HTTP, or in-process calls. The reference implementation is
-[pdfbadger](https://github.com/fjjjuv/pdfbadger).
+HTTP, or in-process calls.
 
 ## 2. Transaction lifecycle
 
