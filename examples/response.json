@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "result": {
+    "applied": 1,
+    "created": []
+  },
+  "issues": [],
+  "certificate": {
+    "pre_sig": "blake3:9f2c...",
+    "post_sig": "blake3:41ab...",
+    "touched": ["e12"],
+    "untouched_changed": [],
+    "render_diff_zones": [
+      {"page": 0, "rect": [50, 120, 300, 140]}
+    ]
+  },
+  "journal_entry": {
+    "seq": 7,
+    "ts": "2026-11-22T15:04:00Z",
+    "ops_hash": "blake3:77de...",
+    "inverse_ops": [
+      {
+        "op": "replace_text",
+        "target": "text:'invoice #43'",
+        "text": "invoice #42"
+      }
+    ],
+    "chain_prev": "blake3:0c19..."
+  }
+}

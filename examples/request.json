@@ -1,0 +1,17 @@
+{
+  "dcp": "1.0",
+  "doc": "/abs/path/invoice.pdf",
+  "ops": [
+    {
+      "op": "replace_text",
+      "target": "text:'invoice #42'",
+      "text": "invoice #43"
+    }
+  ],
+  "contract": {
+    "only_touch": ["e12"],
+    "max_mutations": 1
+  },
+  "journal": true,
+  "strict": true
+}
