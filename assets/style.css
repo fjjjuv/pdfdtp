@@ -59,7 +59,7 @@ article a{color:var(--acc2)}
 .copy button{position:absolute;top:8px;right:8px;background:#122019;border:1px solid var(--bd);color:var(--mut);border-radius:6px;padding:3px 10px;font-size:.75rem;cursor:pointer}
 .copy button:hover{color:var(--fg)}
 .flow{display:flex;flex-direction:column;gap:10px;margin:22px 0}
-.fstep{display:flex;align-items:center;gap:14px;border:1px solid var(--bd);border-radius:8px;padding:12px 16px;transition:.35s;opacity:.45}
+.fstep{display:flex;align-items:center;gap:14px;border:1px solid var(--bd);border-radius:8px;padding:12px 16px;transition:.35s;opacity:.75}
 .fstep .n{font-family:var(--mono);color:var(--mut);font-size:.8rem;min-width:26px}
 .fstep.on{opacity:1;border-color:var(--acc);box-shadow:0 0 16px #34d39922}
 .fstep.on .n{color:var(--acc)}
